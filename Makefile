@@ -9,8 +9,8 @@ BUILD_DIR := build
 SRC := $(filter-out $(SRC_DIR)/binary_search_tree.cpp,$(wildcard $(SRC_DIR)/*.cpp))
 OBJ := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC))
 
-MAIN_OBJ := $(BUILD_DIR)/main.o
-EXECUTABLE := $(BUILD_DIR)/main
+MAIN_OBJ := $(BUILD_DIR)/binary_search_tree.o
+EXECUTABLE := $(BUILD_DIR)/binary_search_tree
 
 # Test sources (these contain Catch2 main)
 TEST_SRC := $(wildcard $(TEST_DIR)/*.cpp)
