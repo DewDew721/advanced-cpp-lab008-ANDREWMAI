@@ -6,7 +6,7 @@ TEST_DIR := tests
 BUILD_DIR := build
 
 # All src files except main.cpp
-SRC := $(filter-out $(SRC_DIR)/main.cpp,$(wildcard $(SRC_DIR)/*.cpp))
+SRC := $(filter-out $(SRC_DIR)/binary_search_tree.cpp,$(wildcard $(SRC_DIR)/*.cpp))
 OBJ := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC))
 
 MAIN_OBJ := $(BUILD_DIR)/main.o
@@ -29,7 +29,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Compile main.cpp
-$(MAIN_OBJ): $(SRC_DIR)/main.cpp | $(BUILD_DIR)
+$(MAIN_OBJ): $(SRC_DIR)/binary_search_tree.cpp | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Compile test .cpp files

@@ -90,20 +90,58 @@ TreeNode* BinarySearchTree::insertRecursive(TreeNode* node, int value) {
     if (value < node->value)
     {
         node->left = insertRecursive(node->left, value);
+        size_++;
     }
 
     else if (value > node->value)
     {
         node->right = insertRecursive(node->right, value);
+        size_++;
     }
 
     return node;
 }
 
 TreeNode* BinarySearchTree::removeRecursive(TreeNode* node, int value) {
-    (void)node;
-    (void)value;
-    throw std::logic_error("Student implementation required: removeRecursive");
+    if (node == nullptr)
+    {
+        return nullptr;
+    }
+
+    if (value < node->value)
+    {
+        node->left = removeRecursive(node->left, value);
+        size_--;
+    }
+    else if (value > node->value)
+    {
+        node->right = removeRecursive(node->right, value);
+        size_--;
+    }
+    else
+    {
+        if (node->left == nullptr)
+        {
+            TreeNode* temp = node->right;
+            delete node;
+            return temp;
+        }
+        else if (node->right == nullptr)
+        {
+            TreeNode* temp = node->left;
+            delete node;
+            return temp;
+        }
+        else
+        {
+            TreeNode* temp = new TreeNode(minimumRecursive(node->right));
+            node->value = temp->value;
+            node->right = removeRecursive(node->right, temp->value);
+            size_--;
+            delete temp;
+        }
+    }
+    return node;
 }
 
 bool BinarySearchTree::searchRecursive(const TreeNode* node, int value) const {
